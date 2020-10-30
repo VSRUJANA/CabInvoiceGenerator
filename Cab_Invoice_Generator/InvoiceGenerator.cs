@@ -8,7 +8,13 @@ namespace Cab_Invoice_Generator
     {
         public double CalculateFare(double distance, int time)
         {
-            return 0;
+            int costPerKilometer = 10;
+            int costPerMinute = 1;
+            int minimumFare = 5;
+            double totalFare = distance * costPerKilometer + time * costPerMinute;
+            if (totalFare < minimumFare)
+                return minimumFare;
+            return totalFare;
         }
     }
 }
