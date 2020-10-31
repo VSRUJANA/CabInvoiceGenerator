@@ -39,5 +39,23 @@ namespace Cab_Invoice_Generator_Test
             // Checking if the test case passes
             Assert.AreEqual(expectedFare, actualFare);
         }
+
+        [Test]
+        public void GivenUserIdWith5Rides_ShouldReturnTotalFare()
+        {
+            Ride[] rides =
+            {
+                new Ride(1.0, 1),
+                new Ride(2.0, 2),
+                new Ride(2.0, 2),
+                new Ride(4.0, 4),
+                new Ride(3.0, 3)
+            };
+            double expected = 132;
+            InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
+            InvoiceSummary summary = invoiceGenerator.CalculateFare(rides);
+            double actual = summary.totalFare;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
