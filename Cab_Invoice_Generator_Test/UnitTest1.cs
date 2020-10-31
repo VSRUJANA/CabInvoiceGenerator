@@ -41,17 +41,17 @@ namespace Cab_Invoice_Generator_Test
         }
 
         [Test]
-        public void GivenUserIdWith5Rides_ShouldReturnTotalFare()
+        public void Given5Rides_CalculateFareMethodShould_ReturnTotalFare()
         {
             Ride[] rides =
             {
                 new Ride(1.0, 1),
                 new Ride(2.0, 2),
-                new Ride(2.0, 2),
+                new Ride(3.0, 2),
                 new Ride(4.0, 4),
-                new Ride(3.0, 3)
+                new Ride(5.0, 3)
             };
-            double expected = 132;
+            double expected = 162;
             InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
             InvoiceSummary summary = invoiceGenerator.CalculateFare(rides);
             double actual = summary.totalFare;

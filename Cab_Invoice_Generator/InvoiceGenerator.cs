@@ -21,7 +21,12 @@ namespace Cab_Invoice_Generator
         // Function To Calculate Total Fare and Generating Summary For Multiple Rides.
         public InvoiceSummary CalculateFare(Ride[] rides)
         {
-            return null;
+            double totalFare = 0;
+            foreach (Ride ride in rides)
+            {
+                totalFare += this.CalculateFare(ride.distance, ride.time);
+            }
+            return new InvoiceSummary(rides.Length, totalFare);
         }
     }
 }
