@@ -72,7 +72,7 @@ namespace Cab_Invoice_Generator_Test
             InvoiceSummary expected = new InvoiceSummary(5, 162);
             InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
             InvoiceSummary summary = invoiceGenerator.CalculateFare(rides);
-            Assert.AreEqual(null, expected);
+            Assert.AreEqual(summary, expected);
         }
     }
 }
