@@ -25,11 +25,18 @@ namespace Cab_Invoice_Generator
         public void AddRide(string userId, Ride[] rides)
         {
             bool rideList = this.userRides.ContainsKey(userId);
-            if (!rideList)
+            try
             {
-                List<Ride> list = new List<Ride>();
-                list.AddRange(rides);
-                this.userRides.Add(userId, list);
+                if (!rideList)
+                {
+                    List<Ride> list = new List<Ride>();
+                    list.AddRange(rides);
+                    this.userRides.Add(userId, list);
+                }
+            }
+            catch (CabInvoiceException)
+            {
+                throw new CabInvoiceException(CabInvoiceException.ExceptionType.NULL_RIDES, "Rides Are Null");
             }
         }
 
@@ -40,7 +47,14 @@ namespace Cab_Invoice_Generator
         /// <returns></returns>
         public Ride[] GetRides(string userId)
         {
-            return this.userRides[userId].ToArray();
+            try
+            {
+                return this.userRides[userId].ToArray();
+            }
+            catch (Exception)
+            {
+                throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_USER_ID, "Invalid UserID");
+            }
         }
     }
 }

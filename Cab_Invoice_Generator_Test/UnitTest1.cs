@@ -90,7 +90,7 @@ namespace Cab_Invoice_Generator_Test
             RideRepository rideRepository = new RideRepository();
             rideRepository.AddRide(userId, rides);
             Ride[] actual = rideRepository.GetRides(userId);
-            Assert.AreEqual(rides, actual);
+            Assert.AreEqual(rides, null);
         }
     }
 }
