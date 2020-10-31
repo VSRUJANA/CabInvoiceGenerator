@@ -76,7 +76,7 @@ namespace Cab_Invoice_Generator_Test
         }
 
         [Test]
-        public void GivenUserId_ShouldReturnListOfRides()
+        public void GivenUserId_InvoiceServiceShould_ReturnListOfRides()
         {
             Ride[] rides =
             {
@@ -86,10 +86,10 @@ namespace Cab_Invoice_Generator_Test
                 new Ride(4.0, 4),
                 new Ride(5.0, 3)
             };
-            string userId = "123";
-            InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
-            invoiceGenerator.AddRides(userId, rides);
-            Ride[] actual = invoiceGenerator.rideRepository.GetRides(userId);
+            string userId = "12345";
+            RideRepository rideRepository = new RideRepository();
+            rideRepository.AddRide(userId, rides);
+            Ride[] actual = rideRepository.GetRides(userId);
             Assert.AreEqual(rides, actual);
         }
     }
